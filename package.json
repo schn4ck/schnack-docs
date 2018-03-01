@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/sch4ck/schnack-docs/issues"
   },
-  "homepage": "https://github.com/sch4ck/schnack-docs#readme",
+  "homepage": "https://schnack.cool",
   "dependencies": {},
   "devDependencies": {
     "marked": "^0.3.16"
