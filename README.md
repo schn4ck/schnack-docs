@@ -106,6 +106,10 @@ When an user login through an OAuth provider, the session informations are store
 
 The `secret` provided in `config.json` will be used by [express-session](https://github.com/expressjs/session#secret) to sign the session ID cookie.
 
+### Mastodon
+
+- All you have to do is to define `app_name` and `app_website` in the `oauth.mastodon` section of your `config.json`. Schnack will then create OAuth applications at Mastodon instances whenever a user tries to sign in (the users are asked to enter a Mastodon domain before signing in).
+
 ### Twitter
 
 - Create a new OAuth App on [apps.twitter.com](https://apps.twitter.com/)
