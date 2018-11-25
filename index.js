@@ -15,7 +15,7 @@ const index = indexTemplate
   .replace('{{content}}', docsAsHtml)
   .replace('{{navigation}}', navAsHtml);
 
-fs.writeFile(path.resolve(__dirname, 'public', 'index.html'), index, () => {});
+fs.writeFile(path.resolve(__dirname, 'docs', 'index.html'), index, () => {});
 
 function generateNavigation(toc) {
   return toc

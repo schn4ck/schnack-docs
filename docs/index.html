@@ -242,6 +242,18 @@ The fields <em>schnack_host</em> and <em>page_url</em> should be hosted on the <
 <td>the secret passed to <a href="https://github.com/expressjs/session#secret">express-session</a></td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;mastodon</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;app_name</td>
+<td>Schnack is going to create the OAuth apps automatically via Mastodon API. While doing so it has to give the Mastodon instance a name and a website url of the external application (you can just use your website title).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;app_website</td>
+<td>the website url used to create the OAuth apps at Mastodon instances (see app_name)</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;twitter</td>
 <td></td>
 </tr>
@@ -344,6 +356,15 @@ The fields <em>schnack_host</em> and <em>page_url</em> should be hosted on the <
   <p><em>schnack</em> uses OAuth to authenticate the users of your comment platform, in order to prevent spam without having to implement and manage an own user management system. Users have to be registered for one of the configured providers. You should configure at least one of the OAuth providers in order to allow users to login and write comments.
 When an user login through an OAuth provider, the session informations are stored into a cookie. In order to allow this action, your <em>schnack</em> instance and the page where you are embedding <em>schnack</em> should reside on <strong>subdomains of the same domain</strong>.</p>
 <p>The <code>secret</code> provided in <code>config.json</code> will be used by <a href="https://github.com/expressjs/session#secret">express-session</a> to sign the session ID cookie.</p>
+
+    <h3 id="mastodon">
+      <a class="anchor" href="#mastodon">
+        Mastodon
+      </a>
+    </h3>
+  <ul>
+<li>All you have to do is to define <code>app_name</code> and <code>app_website</code> in the <code>oauth.mastodon</code> section of your <code>config.json</code>. Schnack will then create OAuth applications at Mastodon instances whenever a user tries to sign in (the users are asked to enter a Mastodon domain before signing in).</li>
+</ul>
 
     <h3 id="twitter">
       <a class="anchor" href="#twitter">
