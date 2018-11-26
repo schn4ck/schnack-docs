@@ -176,21 +176,29 @@ The language used in the Schnack form and comments ("Send comment", "Reply", etc
 <script src="https://comments.yoursite.com/embed.js"
     data-schnack-slug="post-slug"
     data-schnack-target=".comments-go-here"
-    data-schnack-partials-sign-in-via="To post a comment you need to sign in via"
-    data-schnack-partials-login-status="signed in as <span class='schnack-user'>@%USER%</span> (<a class='schnack-signout' href='#'>sign out</a>)"
-    data-schnack-partials-or=" or "
-    data-schnack-partials-edit="Edit"
-    data-schnack-partials-preview="Preview"
-    data-schnack-partials-cancel="Cancel"
-    data-schnack-partials-reply="Reply"
-    data-schnack-partials-send-comment="Send comment"
-    data-schnack-partials-post-comment="Write your comment here (feel free to use markdown). Please be nice :)"
-    data-schnack-partials-mute="mute notifications"
-    data-schnack-partials-unmute="unmute"
-    data-schnack-partials-admin-approval="This comment is still waiting for your approval"
-    data-schnack-partials-waiting-for-approval="Your comment is still waiting for approval by the site owner">
+    data-schnack-partials-reply="Reply to this comment"
+    data-schnack-partials-sign-in-via="To post a comment sign in via">
 </script>
 ```
+
+Here's a list of all the supported attributes (make sure to prepend `data-schnack-partial-`:
+
+| attribute             | value                 |
+|---------------|---------------------|
+| `sign-in-via`  | _To post a comment you need to sign in via_ |
+| `login-status`  | _signed in as @%USER% (<a class='schnack-signout' href='#'>sign out</a>)_ |
+| `or`  | _or_ |
+| `edit`  | _Edit_ |
+| `preview`  | _Preview_ |
+| `cancel`  | _Cancel_ |
+| `reply`  | _Reply_ |
+| `send-comment`  | _Send comment_ |
+| `post-comment`  | _Write your comment here (feel free to use markdown). Please be nice :)_ |
+| `mute`  | _mute notifications_ |
+| `unmute`  | _unmute_ |
+| `admin-approval`  | _This comment is still waiting for your approval_ |
+| `waiting-for-approval`  | _Your comment is still waiting for approval by the site owner_ |
+
 
 # Administration
 

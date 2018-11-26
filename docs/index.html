@@ -478,21 +478,73 @@ When an user login through an OAuth provider, the session informations are store
 <pre><code class="lang-html">&lt;script src=&quot;https://comments.yoursite.com/embed.js&quot;
     data-schnack-slug=&quot;post-slug&quot;
     data-schnack-target=&quot;.comments-go-here&quot;
-    data-schnack-partials-sign-in-via=&quot;To post a comment you need to sign in via&quot;
-    data-schnack-partials-login-status=&quot;signed in as &lt;span class=&#39;schnack-user&#39;&gt;@%USER%&lt;/span&gt; (&lt;a class=&#39;schnack-signout&#39; href=&#39;#&#39;&gt;sign out&lt;/a&gt;)&quot;
-    data-schnack-partials-or=&quot; or &quot;
-    data-schnack-partials-edit=&quot;Edit&quot;
-    data-schnack-partials-preview=&quot;Preview&quot;
-    data-schnack-partials-cancel=&quot;Cancel&quot;
-    data-schnack-partials-reply=&quot;Reply&quot;
-    data-schnack-partials-send-comment=&quot;Send comment&quot;
-    data-schnack-partials-post-comment=&quot;Write your comment here (feel free to use markdown). Please be nice :)&quot;
-    data-schnack-partials-mute=&quot;mute notifications&quot;
-    data-schnack-partials-unmute=&quot;unmute&quot;
-    data-schnack-partials-admin-approval=&quot;This comment is still waiting for your approval&quot;
-    data-schnack-partials-waiting-for-approval=&quot;Your comment is still waiting for approval by the site owner&quot;&gt;
+    data-schnack-partials-reply=&quot;Reply to this comment&quot;
+    data-schnack-partials-sign-in-via=&quot;To post a comment sign in via&quot;&gt;
 &lt;/script&gt;
 </code></pre>
+<p>Here&#39;s a list of all the supported attributes (make sure to prepend <code>data-schnack-partial-</code>:</p>
+<table>
+<thead>
+<tr>
+<th>attribute</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sign-in-via</code></td>
+<td><em>To post a comment you need to sign in via</em></td>
+</tr>
+<tr>
+<td><code>login-status</code></td>
+<td><em>signed in as @%USER% (<a class='schnack-signout' href='#'>sign out</a>)</em></td>
+</tr>
+<tr>
+<td><code>or</code></td>
+<td>_or_</td>
+</tr>
+<tr>
+<td><code>edit</code></td>
+<td><em>Edit</em></td>
+</tr>
+<tr>
+<td><code>preview</code></td>
+<td><em>Preview</em></td>
+</tr>
+<tr>
+<td><code>cancel</code></td>
+<td><em>Cancel</em></td>
+</tr>
+<tr>
+<td><code>reply</code></td>
+<td><em>Reply</em></td>
+</tr>
+<tr>
+<td><code>send-comment</code></td>
+<td><em>Send comment</em></td>
+</tr>
+<tr>
+<td><code>post-comment</code></td>
+<td><em>Write your comment here (feel free to use markdown). Please be nice :)</em></td>
+</tr>
+<tr>
+<td><code>mute</code></td>
+<td><em>mute notifications</em></td>
+</tr>
+<tr>
+<td><code>unmute</code></td>
+<td><em>unmute</em></td>
+</tr>
+<tr>
+<td><code>admin-approval</code></td>
+<td><em>This comment is still waiting for your approval</em></td>
+</tr>
+<tr>
+<td><code>waiting-for-approval</code></td>
+<td><em>Your comment is still waiting for approval by the site owner</em></td>
+</tr>
+</tbody>
+</table>
 
     <h1 id="administration">
       <a class="anchor" href="#administration">
