@@ -181,9 +181,9 @@ The language used in the Schnack form and comments ("Send comment", "Reply", etc
 </script>
 ```
 
-Here's a list of all the supported attributes (make sure to prepend `data-schnack-partial-`:
+Here's a list of all the supported attributes (make sure to add `data-schnack-partial-` in to the keys:
 
-| attribute    | default value                 |
+| key    | default value                 |
 |---------------|---------------------|
 | `sign-in-via`  | _To post a comment you need to sign in via_ |
 | `login-status`  | _signed in as @%USER% (&lt;a class='schnack-signout' href='#'&gt;sign out&lt;/a&gt;)_ |
