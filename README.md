@@ -183,11 +183,11 @@ The language used in the Schnack form and comments ("Send comment", "Reply", etc
 
 Here's a list of all the supported attributes (make sure to prepend `data-schnack-partial-`:
 
-| attribute             | value                 |
+| attribute    | default value                 |
 |---------------|---------------------|
 | `sign-in-via`  | _To post a comment you need to sign in via_ |
 | `login-status`  | _signed in as @%USER% (&lt;a class='schnack-signout' href='#'&gt;sign out&lt;/a&gt;)_ |
-| `or`  | _or_ |
+| `or`  | <i>or</i> |
 | `edit`  | _Edit_ |
 | `preview`  | _Preview_ |
 | `cancel`  | _Cancel_ |
