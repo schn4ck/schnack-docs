@@ -221,7 +221,8 @@ aside {
 .schnack-reply,
 .schnack-signin-twitter,
 .schnack-signin-github,
-.schnack-signin-google {
+.schnack-signin-google,
+.schnack-signin-mastodon {
   background: #FFB962;
   color: #fff;
   font-size: 15px;
@@ -235,7 +236,8 @@ aside {
 .schnack-reply,
 .schnack-signin-twitter,
 .schnack-signin-github,
-.schnack-signin-google {
+.schnack-signin-google,
+.schnack-signin-mastodon {
   font-size: 12px;
 }
 
@@ -243,7 +245,8 @@ aside {
 .schnack-reply:hover,
 .schnack-signin-twitter:hover,
 .schnack-signin-github:hover,
-.schnack-signin-google:hover {
+.schnack-signin-google:hover,
+.schnack-signin-mastodon:hover {
   box-shadow: 0 0 2px 1px rgba(0,0,0,.125)
 }
 
