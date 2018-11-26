@@ -186,7 +186,7 @@ Here's a list of all the supported attributes (make sure to prepend `data-schnac
 | attribute             | value                 |
 |---------------|---------------------|
 | `sign-in-via`  | _To post a comment you need to sign in via_ |
-| `login-status`  | _signed in as @%USER% (<a class='schnack-signout' href='#'>sign out</a>)_ |
+| `login-status`  | _signed in as @%USER% (&lt;a class='schnack-signout' href='#'&gt;sign out&lt;/a&gt;)_ |
 | `or`  | _or_ |
 | `edit`  | _Edit_ |
 | `preview`  | _Preview_ |
