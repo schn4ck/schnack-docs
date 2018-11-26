@@ -168,6 +168,30 @@ We strongly reccommend to subscribe to push notifications using Chrome on your m
 
 If none of the notification services fits your needs, you can still use the RSS feed provided at `/feed` to stay updated about the latest comments posted. You can also use this endpoint in combination with services like [IFTTT](https://ifttt.com).
 
+## Localization
+
+The language used in the Schnack form and comments ("Send comment", "Reply", etc.) can now be customized! Just pass any wording you want to change as `data-schnack-partials-` attribute to the script tag:
+
+```html
+<script src="https://comments.yoursite.com/embed.js"
+    data-schnack-slug="post-slug"
+    data-schnack-target=".comments-go-here"
+    data-schnack-partials-sign-in-via="To post a comment you need to sign in via"
+    data-schnack-partials-login-status="signed in as <span class='schnack-user'>@%USER%</span> (<a class='schnack-signout' href='#'>sign out</a>)"
+    data-schnack-partials-or=" or "
+    data-schnack-partials-edit="Edit"
+    data-schnack-partials-preview="Preview"
+    data-schnack-partials-cancel="Cancel"
+    data-schnack-partials-reply="Reply"
+    data-schnack-partials-send-comment="Send comment"
+    data-schnack-partials-post-comment="Write your comment here (feel free to use markdown). Please be nice :)"
+    data-schnack-partials-mute="mute notifications"
+    data-schnack-partials-unmute="unmute"
+    data-schnack-partials-admin-approval="This comment is still waiting for your approval"
+    data-schnack-partials-waiting-for-approval="Your comment is still waiting for approval by the site owner">
+</script>
+```
+
 # Administration
 
 Administrators are managed adding or removing their *schnack* user ID to the `admins` array in `config.js`. When a user logs in as administrator, the moderation UI will appear in the certain comment section. By default it's set to `[1]`. So the first user will be an admin.

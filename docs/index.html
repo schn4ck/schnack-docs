@@ -64,6 +64,14 @@
     
 
       <a
+        class="nav__item nav__item-2"
+        href="#localization"
+      >
+        Localization
+      </a>
+    
+
+      <a
         class="nav__item nav__item-1"
         href="#administration"
       >
@@ -460,6 +468,31 @@ When an user login through an OAuth provider, the session informations are store
       </a>
     </h3>
   <p>If none of the notification services fits your needs, you can still use the RSS feed provided at <code>/feed</code> to stay updated about the latest comments posted. You can also use this endpoint in combination with services like <a href="https://ifttt.com">IFTTT</a>.</p>
+
+    <h2 id="localization">
+      <a class="anchor" href="#localization">
+        Localization
+      </a>
+    </h2>
+  <p>The language used in the Schnack form and comments (&quot;Send comment&quot;, &quot;Reply&quot;, etc.) can now be customized! Just pass any wording you want to change as <code>data-schnack-partials-</code> attribute to the script tag:</p>
+<pre><code class="lang-html">&lt;script src=&quot;https://comments.yoursite.com/embed.js&quot;
+    data-schnack-slug=&quot;post-slug&quot;
+    data-schnack-target=&quot;.comments-go-here&quot;
+    data-schnack-partials-sign-in-via=&quot;To post a comment you need to sign in via&quot;
+    data-schnack-partials-login-status=&quot;signed in as &lt;span class=&#39;schnack-user&#39;&gt;@%USER%&lt;/span&gt; (&lt;a class=&#39;schnack-signout&#39; href=&#39;#&#39;&gt;sign out&lt;/a&gt;)&quot;
+    data-schnack-partials-or=&quot; or &quot;
+    data-schnack-partials-edit=&quot;Edit&quot;
+    data-schnack-partials-preview=&quot;Preview&quot;
+    data-schnack-partials-cancel=&quot;Cancel&quot;
+    data-schnack-partials-reply=&quot;Reply&quot;
+    data-schnack-partials-send-comment=&quot;Send comment&quot;
+    data-schnack-partials-post-comment=&quot;Write your comment here (feel free to use markdown). Please be nice :)&quot;
+    data-schnack-partials-mute=&quot;mute notifications&quot;
+    data-schnack-partials-unmute=&quot;unmute&quot;
+    data-schnack-partials-admin-approval=&quot;This comment is still waiting for your approval&quot;
+    data-schnack-partials-waiting-for-approval=&quot;Your comment is still waiting for approval by the site owner&quot;&gt;
+&lt;/script&gt;
+</code></pre>
 
     <h1 id="administration">
       <a class="anchor" href="#administration">
