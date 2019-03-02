@@ -137,6 +137,9 @@ The `secret` provided in `config.json` will be used by [express-session](https:/
     - *Location*: Optional (`No organisation` is ok)
     - create
 - switch to new project
+- library (on the left)
+    - search for `google+ api`
+    - enable
 - credentials (on the left)
 - OAuth Consent Screen tab
     - *Application Name*: the name of your blog
