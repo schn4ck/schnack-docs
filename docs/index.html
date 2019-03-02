@@ -413,7 +413,38 @@ When an user login through an OAuth provider, the session informations are store
         Google
       </a>
     </h3>
-  
+  <ul>
+<li>Head to <a href="https://console.developers.google.com">console.developers.google.com</a></li>
+<li>create project<ul>
+<li><code>My Project</code> (top left) &gt; <code>new project</code></li>
+<li><em>Project Name</em>: the name of your blog</li>
+<li><em>Location</em>: Optional (<code>No organisation</code> is ok)</li>
+<li>create</li>
+</ul>
+</li>
+<li>switch to new project</li>
+<li>credentials (on the left)</li>
+<li>OAuth Consent Screen tab<ul>
+<li><em>Application Name</em>: the name of your blog</li>
+<li><em>Support Email</em></li>
+<li><em>Authorized domains</em>: add your primary domain (<code>https://example.com</code> not <code>https://schnack.example.com</code>)</li>
+<li><em>Application Homepage link</em>: your front page</li>
+<li>other fields appear to be optional</li>
+</ul>
+</li>
+<li>create credentials &gt; OAuth Client ID<ul>
+<li><em>Application Type</em>: Web application</li>
+<li><em>Name</em>: the name of your blog</li>
+<li><em>Authorized JavaScript Origins</em>: primary domain</li>
+<li>other fields appear to be optional</li>
+</ul>
+</li>
+<li>note warning:</li>
+</ul>
+<blockquote>
+<p>OAuth is limited to 100 sensitive scope logins until the OAuth consent screen is published. This may require a verification process that can take several days.</p>
+</blockquote>
+
     <h3 id="facebook">
       <a class="anchor" href="#facebook">
         Facebook
