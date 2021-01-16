@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node index.js",
+    "serve": "cd docs && npx hot-server",
+    "watch": "npx chokidar-cli index.tpl.html README.md index.js -c 'npm run build'",
+    "dev": "npm run watch & npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +26,9 @@
   "homepage": "https://schnack.cool",
   "dependencies": {},
   "devDependencies": {
-    "marked": "^0.3.16"
+    "chokidar-cli": "^2.1.0",
+    "hot-server": "0.0.23",
+    "marked": "^0.3.16",
+    "serve": "^11.3.2"
   }
 }

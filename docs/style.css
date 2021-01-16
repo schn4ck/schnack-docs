@@ -110,7 +110,8 @@ aside {
   padding: 0 .85em;
 }
 
-.docs code {
+.docs p > code,
+.docs li > code {
   background-color: #f5f2f0;
   padding: .1em .25em;
 }

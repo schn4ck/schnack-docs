@@ -12,36 +12,36 @@ Schnack is an open source commenting system written in JavaScript.
 
 This is the fastest way to setup *schnack*.
 
+
 **Requirements**:
-- Node.js (>= v6)
+- Node.js (>= v8)
 - npm (>= v5)
 
-Clone or download schnack:
+Create a new folder in which you want to install Schnack:
 
 ```bash
-git clone https://github.com/schn4ck/schnack
+> mkdir schnack
+> cd schnack
 ```
 
-Go to the schnack directory:
+Download the [config file template](https://github.com/schn4ck/schnack/blob/master/schnack.tpl.json) as `schnack.json` and edit it according to [configuration](#configuration) section:
+
 ```bash
-cd schnack
+> curl -o schnack.json
+> vim schnack.json  # or open with any editor of your choice
 ```
 
-Install dependencies:
-```bash
-npm install
-```
-
-Copy and edit the config file according to [configuration](#configuration) section:
+Make sure you remove all plugin configs that you don't need. 
+Then install Schnack and the configured plugins via
 
 ```bash
-cp config.tpl.json config.json
-vim config.json                 # or open with any editor of your choice
+> npm init schnack
 ```
 
 Run the server:
+
 ```bash
-npm start
+> npm start
 ```
 
 Embed in your HTML page:
@@ -56,7 +56,7 @@ Embed in your HTML page:
 
 # Configuration
 
-*schnack* will try to read the configuration from the `config.json` file. The minimal configuration requires the following fields: *schnack_host*, *admins*, *oauth.secret*  and at least one oauth provider (id and secret key) and one notification provider.
+*schnack* will try to read the configuration from the `schnack.json` file. The minimal configuration requires the following fields: *schnack_host*, *admins*, *oauth.secret*  and at least one oauth provider (id and secret key) and one notification provider.
 The fields *schnack_host* and *page_url* should be hosted on the **same domain**. If your blog is running at *https://blog.example.com*, then your *schnack* instance should be reachable at any **subdomain** of *example.com*.
 
 
@@ -71,46 +71,52 @@ The fields *schnack_host* and *page_url* should be hosted on the **same domain**
 | admins                                    | an array of userIDs which can login as admin (e.g. *[1, 245]*)                                                                                            |
 | oauth                                     |                                                                                                                                                           |
 | &nbsp;&nbsp;secret                        | the secret passed to [express-session](https://github.com/expressjs/session#secret)                                                                       |
-| &nbsp;&nbsp;mastodon                       |                                                                                                                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;app_name      | Schnack is going to create the OAuth apps automatically via Mastodon API. While doing so it has to give the Mastodon instance a name and a website url of the external application (you can just use your website title).        |
-| &nbsp;&nbsp;&nbsp;&nbsp;app_website   | the website url used to create the OAuth apps at Mastodon instances (see app_name)                                                                                                                |
-| &nbsp;&nbsp;twitter                       |                                                                                                                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;consumer_key      | the consumer key for Twitter OAuth apps                                                                                                                   |
-| &nbsp;&nbsp;&nbsp;&nbsp;consumer_secret   | the consumer secret for Twitter OAuth apps                                                                                                                |
-| &nbsp;&nbsp;github                        |                                                                                                                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;client_id         | the client id for GitHub OAuth apps                                                                                                                       |
-| &nbsp;&nbsp;&nbsp;&nbsp;client_secret     | the client secret for GitHub OAuth apps                                                                                                                   |
-| &nbsp;&nbsp;google                        |                                                                                                                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;client_id         | the client id for Google OAuth2 apps                                                                                                                      |
-| &nbsp;&nbsp;&nbsp;&nbsp;client_secret     | the client secret for Google OAuth2 apps                                                                                                                  |
-| &nbsp;&nbsp;facebook                      |                                                                                                                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;client_id         | the client id for Facebook OAuth apps                                                                                                                     |
-| &nbsp;&nbsp;&nbsp;&nbsp;client_secret     | the client secret for Facebook OAuth apps                                                                                                                 |
-| notify                                    |                                                                                                                                                           |
-| &nbsp;&nbsp;pushover                      |                                                                                                                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;app_token         | the Pushover app token                                                                                                                                    |
-| &nbsp;&nbsp;&nbsp;&nbsp;user_key          | the Pushover user key                                                                                                                                     |
-| &nbsp;&nbsp;webpush                       |                                                                                                                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;vapid_public_key  | the [webpush](https://github.com/schn4ck/schnack#push-notifications-for-new-comments) public key                                                              |
-| &nbsp;&nbsp;&nbsp;&nbsp;vapid_private_key | the [webpush](https://github.com/schn4ck/schnack#push-notifications-for-new-comments) private key                                                             |
-| &nbsp;&nbsp;slack                         |                                                                                                                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;webhook_url       | the Slack webhook URL                                                                                                                                     |
+| plugins                                     | additional config options for plugins (see below)                                                                                                                                                     |
 | date_format                               | how to display dates (e.g. *MMMM DD, YYYY - h:mm a*)                                                                                                      |
 | trust                                     | a list of trusted users (see [Trust your friends](#trust-your-friends))                                                                                   |
 
 
+# Plugins
+
+*schnack* supports various [authentication](#authentication) and [notification](#notifications) providers which can be configured via plugins. Once you added the plugin config to your `schnack.json`, they will be installed automatically via:
+
+```bash
+> npm init schnack
+```
+
+
+
 ## Authentication
 
-*schnack* uses OAuth to authenticate the users of your comment platform, in order to prevent spam without having to implement and manage an own user management system. Users have to be registered for one of the configured providers. You should configure at least one of the OAuth providers in order to allow users to login and write comments.
-When an user login through an OAuth provider, the session informations are stored into a cookie. In order to allow this action, your *schnack* instance and the page where you are embedding *schnack* should reside on **subdomains of the same domain**.
+*schnack* uses authentication plugins to authenticate the users of your comment platform, in order to prevent spam without having to implement and manage an own user management system. Most of these plugins use external services as OAuth providers.
 
-The `secret` provided in `config.json` will be used by [express-session](https://github.com/expressjs/session#secret) to sign the session ID cookie.
+You should configure at least one authentication plugin in order to allow users to login and write comments.
+
+When a user logs in through an OAuth provider, the session informations are stored into a cookie. In order to allow this action, your *schnack* instance and the page where you are embedding *schnack* should reside on **subdomains of the same domain**.
+
+The `secret` provided in `schnack.json` will be used by [express-session](https://github.com/expressjs/session#secret) to sign the session ID cookie.
 
 ### Mastodon
 
-- All you have to do is to define `app_name` and `app_website` in the `oauth.mastodon` section of your `config.json`. Schnack will then create OAuth applications at Mastodon instances whenever a user tries to sign in (the users are asked to enter a Mastodon domain before signing in).
+If you activate the plugin `auth-mastodon` users can log in through any Mastodon instance account.
+
+- All you have to do is to define `app_name` and `app_website` in the `plugins.auth-mastodon` section of your `schnack.json`. Schnack will then create OAuth applications at Mastodon instances whenever a user tries to sign in (the users are asked to enter a Mastodon domain before signing in).
+
+```json
+// schnack.json
+{
+    "plugins": {
+        "auth-mastodon": {
+            "app_name": "your website name",
+            "app_website": "https://blog.example.com/"
+        }
+    }
+}
+```
 
 ### Twitter
+
+If you activate the plugin `auth-twitter` users can log in using their Twitter account.
 
 - Create a new OAuth App on [apps.twitter.com](https://apps.twitter.com/)
     - *Name*: the name of your blog
@@ -118,9 +124,25 @@ The `secret` provided in `config.json` will be used by [express-session](https:/
     - *Website*: the URL of your *schnack* instance (e.g. https://schnack.example.com)
     - *Callback URL*: the URL of your *schnack* instance followed by `/auth/twitter/callback` (e.g. https://schnack.example.com/auth/twitter/callback)
     - Check the checkbox "Allow this application to be used to Sign in with Twitter"
-- Copy the Consumer Key and the Consumer Secret from "Keys and Access Tokens" to `oauth.twitter.consumer_key` and `oauth.twitter.consumer_secret` in `config.json`
+- Copy the Consumer Key and the Consumer Secret from "Keys and Access Tokens" to `plugins.auth-twitter.consumer_key` and `plugins.auth-twitter.consumer_secret` in `schnack.json`
+
+```json
+// schnack.json
+{
+    "plugins": {
+        "auth-twitter": {
+            "consumer_key": "xxxxx",
+            "consumer_secret": "xxxxx"
+        }
+    }
+}
+```
+
+
 
 ### GitHub
+
+If you activate the plugin `auth-github` users can log in using their Github account.
 
 - Create a new GitHub [OAuth App](https://github.com/settings/applications/new)
     - *Application name*: the name of your blog
@@ -128,13 +150,56 @@ The `secret` provided in `config.json` will be used by [express-session](https:/
     - *Application description*: the description of your blog
     - *Authorization callack URL*: the URL of your *schnack* instance followed by `/auth/github/callback` (e.g. https://schnack.example.com/auth/github/callback)
 
-### Google
+```json
+// schnack.json
+{
+    "plugins": {
+        "auth-github": {
+            "client_id": "xxxxx",
+            "client_secret": "xxxxx"
+        }
+    }
+}
+```
+
 
 ### Facebook
 
+If you activate the plugin `auth-facebook` users can log in using their Facebook account.
+
+```json
+// schnack.json
+{
+    "plugins": {
+        "auth-facebook": {
+            "client_id": "xxxxx",
+            "client_secret": "xxxxx"
+        }
+    }
+}
+```
+
+
+### Google
+
+
+If you activate the plugin `auth-google` users can log in using their Google account.
+
+```json
+// schnack.json
+{
+    "plugins": {
+        "auth-google": {
+            "client_id": "xxxxx",
+            "client_secret": "xxxxx"
+        }
+    }
+}
+```
+
 ## Notifications
 
-When new comments are awaiting for approval, *schnack* will notify the administrators using one of the following services:
+When new comments are awaiting for approval, *schnack* can notify the administrators via **notification plugins**.
 
 ### web-push
 
@@ -147,8 +212,19 @@ In order to configure web-pushes, you should follow these steps:
 node_modules/.bin/web-push generate-vapid-keys
 ```
 
-- Copy the VAPID keys in `config.json`
-- Add your user ID to the *admin* array in `config.json`
+- Copy the VAPID keys in `schnack.json`
+```json
+// schnack.json
+{
+    "plugins": {
+        "notify-webpush": {
+            "vapid_public_key": "xxxxx",
+            "vapid_private_key": "xxxxx"
+        }
+    }
+}
+```
+- Add your user ID to the *admin* array in `schnack.json`
 - Copy the [sw.js](https://github.com/schn4ck/schnack/blob/master/sw.js) into your website's root path, so that this will be accessible at https://comments.example.com/sw.js
 - Login to your *schnack* instance and you will be asked to grant the permission for push notifications.
 
@@ -156,13 +232,54 @@ When a new comment is posted, you will be notified with a notification. In order
 
 We strongly reccommend to subscribe to push notifications using Chrome on your mobile device.
 
-### slack
 
-*schnack* can also send a message to a slack channel when a new comment is awaiting for approval. In order to configure this service just create a slack [webhook](https://api.slack.com/incoming-webhooks) and paste its URL to `notify.slack.webhook_url` in `config.json`.
+
+### Slack
+
+*schnack* can also send a message to a slack channel when a new comment is awaiting for approval. In order to configure this service just create a slack [webhook](https://api.slack.com/incoming-webhooks) and paste its URL to `notify.slack.webhook_url` in `schnack.json`.
+
+```json
+// schnack.json
+{
+    "plugins": {
+        "notify-slack": {
+            "webhook_url": "xxxxx"
+        }
+    }
+}
+```
 
 ### PushOver
 
-[PushOver](https://pushover.net/) is a service to send notifications to your devices. You can use it to receive *schnack* notifications. In order to configure it you should first register for an account and download a [client](https://pushover.net/clients). Then you can create an app and copy the token and the key to `notify.pushover.app_token` and `notify.pushover.user_key` in `config.json`.
+[PushOver](https://pushover.net/) is a service to send notifications to your devices. You can use it to receive *schnack* notifications. In order to configure it you should first register for an account and download a [client](https://pushover.net/clients). Then you can create an app and copy the token and the key to `notify.pushover.app_token` and `notify.pushover.user_key` in `schnack.json`.
+
+```json
+// schnack.json
+{
+    "plugins": {
+        "notify-pushover": {
+            "app_token": "xxxxx",
+            "user_key": "xxxxx"
+        }
+    }
+}
+```
+
+### sendmail
+
+If you configure the plugin `notify-sendmail` *schnack* will use your web servers `sendmail` program to send an email to you every time a comment is awaiting your approval. Note that you may need to [configure sendmail on your server](https://duckduckgo.com/?q=configure+sendmail&) before this is working.
+
+```json
+// schnack.json
+{
+    "plugins": {
+        "notify-sendmail": {
+            "to": "your-email@example.com",
+            "from": "schnack@blog.example.com"
+        }
+    }
+}
+```
 
 ### RSS
 
@@ -229,7 +346,7 @@ You can provide a list of user IDs of people you trust for each authentication p
 
 ## Backups
 
-The most effective way to keep a backup of your data is to take a copy of your `comments.db` file, which is actually including all necessary data. If you cannot find this file then you probably set another name to `database.comments` in `config.json`.
+The most effective way to keep a backup of your data is to take a copy of your `comments.db` file, which is actually including all necessary data. If you cannot find this file then you probably set another name to `database.comments` in `schnack.json`.
 
 # Import comments
 
