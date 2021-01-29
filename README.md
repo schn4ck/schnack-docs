@@ -148,7 +148,7 @@ If you activate the plugin `auth-github` users can log in using their Github acc
     - *Application name*: the name of your blog
     - *Homepage URL*: the URL of your *schnack* instance (e.g. https://schnack.example.com)
     - *Application description*: the description of your blog
-    - *Authorization callack URL*: the URL of your *schnack* instance followed by `/auth/github/callback` (e.g. https://schnack.example.com/auth/github/callback)
+    - *Authorization callback URL*: the URL of your *schnack* instance followed by `/auth/github/callback` (e.g. https://schnack.example.com/auth/github/callback)
 
 ```json
 // schnack.json
