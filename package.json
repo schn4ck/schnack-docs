@@ -29,6 +29,6 @@
     "chokidar-cli": "^2.1.0",
     "hot-server": "0.0.23",
     "marked": "^0.3.16",
-    "serve": "^11.3.2"
+    "serve": "^14.1.1"
   }
 }
